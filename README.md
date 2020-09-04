@@ -7,7 +7,7 @@ This app is basically an weather app which fetch information (like temperature, 
 
 
 <p align="center">
-  <img src="Background.png">
+  <img src="background.png">
 </p>
 
 
