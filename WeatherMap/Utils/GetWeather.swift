@@ -18,6 +18,7 @@ class GetWeather {
     
     func getWeatherJson(coordinates: CLLocationCoordinate2D, completion: @escaping (WeatherModel?) -> Void){
         if let url = URL(string: "\(baseURL)\(coordinates.latitude),\(coordinates.longitude)?units=si") {
+            print("URL = \(url)")
             Alamofire.request(url).responseJSON { (response) in
                 if let jsonDic = response.result.value as? [String:Any] {
                     if let currentlyDic = jsonDic["currently"] as? [String:Any] {
@@ -29,7 +30,5 @@ class GetWeather {
                 }
             }
         }
-        
-        
     }
 }

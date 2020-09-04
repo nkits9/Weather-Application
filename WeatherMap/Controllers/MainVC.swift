@@ -6,8 +6,6 @@
 //  Copyright © 2020 Ankit Sharma. All rights reserved.
 //
 
-
-
 import UIKit
 import MapKit
 import CoreLocation
@@ -47,7 +45,7 @@ class MainVC: UIViewController {
     }
     
     //Check for WhenInUse Auth
-    private func checkAuth(){
+    private func checkAuth() {
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             if Reachability.isConnectedToNetwork(){
                 getCurrentLocation()
@@ -105,6 +103,7 @@ class MainVC: UIViewController {
 //EXTENSIONS
 //CoreLocationDelegate Extension
 extension MainVC: CLLocationManagerDelegate {
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let lastLocation = locations.last else {
             return
@@ -132,6 +131,7 @@ extension MainVC: CLLocationManagerDelegate {
 }
 
 //MapViewDelegate Extension
+
 extension MainVC: MKMapViewDelegate {
     
     //Add double tap to the map
@@ -143,7 +143,7 @@ extension MainVC: MKMapViewDelegate {
     
     //Add custom pin
     @objc private func dropMarkOnMap(sender:UITapGestureRecognizer){
-        if Reachability.isConnectedToNetwork(){
+        if Reachability.isConnectedToNetwork() {
             showInfoView()
             let touchPoint = sender.location(in: mapView)
             let coordinates = mapView.convert(touchPoint, toCoordinateFrom: mapView)
@@ -162,7 +162,7 @@ extension MainVC: MKMapViewDelegate {
     }
     
     //Animate info view
-    private func showInfoView(){
+    private func showInfoView() {
         pullupviewHeightLayout.constant = infoViewHeight
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
@@ -206,6 +206,7 @@ extension MainVC: MKMapViewDelegate {
     private func getWeather(view: InfoView, coodrinates: CLLocationCoordinate2D){
         let weatherObject = GetWeather()
         weatherObject.getWeatherJson(coordinates: coodrinates) { (weatherResponse) in
+            
             if let currentWeather = weatherResponse {
                 DispatchQueue.main.async {
                     self.updateWeatherInfo(forView: view, weather: currentWeather)
@@ -224,8 +225,8 @@ extension MainVC: MKMapViewDelegate {
         }
         
         if let temperature = weather.temperature {
-            let celeziusSign: String = "°"
-            view.temperatureLabel.text = "\(Int(temperature))\(celeziusSign)"
+            let celesiusSign: String = "°"
+            view.temperatureLabel.text = "\(Int(temperature))\(celesiusSign)"
         }
         view.activityIndicator.stopAnimating()
     }

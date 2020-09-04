@@ -29,7 +29,6 @@ class InfoView: UIView {
         if let temperature: Double = weather.temperature {
             temperatureLabel.text = String(temperature)
         }
-        
     }
     
 }
