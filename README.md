@@ -1,4 +1,4 @@
-# WeatherApplication-Assessment
+# Weather Application Assessment
 
 As the name suggest it was an assessment of one startup. I was assigned to make this app in a short amount of time and I succesfully did it.
 
